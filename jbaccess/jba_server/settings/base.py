@@ -17,6 +17,13 @@ SECRET_KEY = 'skj435h5lrkfsj;r34prosafdlkmc;alskfl905hok6jfIs'
 DEBUG = False
 ALLOWED_HOSTS = []
 
+STATICFILES_FINDERS = [
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+]
+
+STATICFILES_DIRS = [os.environ.get('STATICFILES_DIRS', os.path.join(BASE_DIR, 'static'))]
+
 try:
     HOSTNAME = socket.gethostname()
 except:

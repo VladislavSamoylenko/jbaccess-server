@@ -50,3 +50,5 @@ LOGGING = {
 }
 
 ALLOWED_HOSTS = ['*']
+
+STATIC_URL = '/static/'

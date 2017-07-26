@@ -103,3 +103,4 @@ celerybeat-schedule
 
 # sqlite3 database
 jbaccess/jbaccess.sqlite3
+node_modules
