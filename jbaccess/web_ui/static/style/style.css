@@ -1,1 +1,39 @@
 @import "materialize.min.css";
+main {
+  padding-left: 300px;
+}
+.side-nav {
+  background-image: url("/static/image/cover-pcb.jpeg");
+  background-position: center;
+  background-size: cover;
+}
+.side-nav li a {
+  font-size: 16px;
+}
+.side-nav li i {
+  color: white;
+}
+img {
+  max-width: 100%;
+}
+.blue-fill {
+  background-color: #2B7FBB;
+  opacity: 0.9;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: -1;
+}
+.logo {
+  height: 230px;
+}
+.logo a:hover {
+  background: transparent !important;
+}
+@media (max-width: 992px) {
+  main {
+    padding-left: 0;
+  }
+}

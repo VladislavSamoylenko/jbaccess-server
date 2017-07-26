@@ -1,0 +1,35 @@
+{% load static %}
+
+<ul class="side-nav fixed">
+    <li class="blue-fill"></li>
+    <li class="logo">
+        <a href="/">
+            <img src="{% static "image/logo-white.png" %}" alt="jointbox">
+        </a>
+    </li>
+    <li>
+        <a href="{% url 'personnel' %}" class="waves-effect waves-light white-text">
+            <i class="material-icons">person</i>Personnel
+        </a>
+    </li>
+    <li>
+        <a href="#" class="waves-effect waves-light white-text">
+            <i class="material-icons">domain</i>Doors
+        </a>
+    </li>
+    <li>
+        <a href="#" class="waves-effect waves-light white-text">
+            <i class="material-icons">place</i>Places
+        </a>
+    </li>
+    <li>
+        <a href="#" class="waves-effect waves-light white-text">
+            <i class="material-icons">lock_outline</i>ACLs
+        </a>
+    </li>
+    <li>
+        <a href="#" class="waves-effect waves-light white-text">
+            <i class="material-icons">developer_board</i>Controllers
+        </a>
+    </li>
+</ul>
