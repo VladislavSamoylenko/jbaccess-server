@@ -4,6 +4,7 @@ from django.contrib import admin
 
 urlpatterns = [
     url(r'^', include('jba_api.urls')),
+    url(r'^', include('web_ui.urls')),
     url(r'^admin/?', admin.site.urls),
 ]
 
