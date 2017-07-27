@@ -1,4 +1,30 @@
 {% extends 'layout/base.html' %}
+{% load jba_tags %}
 {% block content %}
     <h1>Personnel</h1>
+    <div class="row">
+        <div class="col s12 m6">
+            <ul class="collection">
+                {% for person in persons %}
+                    {% person person %}
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="col s12 m6 card">
+            <div class="card-content">
+                <div class="card-title"><h5>Add new person</h5></div>
+                <div class="input-field">
+                    <i class="material-icons prefix">account_circle</i>
+                    <input id="create_person" type="text" class="validate">
+                    <label for="create_person">Full Name</label>
+                </div>
+            </div>
+            <div class="card-action right-align">
+                <a href="#" class="clear">clear</a>
+                <button class="btn waves-effect waves-light" id="create_person_btn">Add
+                    <i class="material-icons right">add_circle</i>
+                </button>
+            </div>
+        </div>
+    </div>
 {% endblock %}

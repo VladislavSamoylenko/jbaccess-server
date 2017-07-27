@@ -32,6 +32,9 @@ img {
 .logo a:hover {
   background: transparent !important;
 }
+.card-title > * {
+  margin-bottom: 2rem !important;
+}
 @media (max-width: 992px) {
   main {
     padding-left: 0;
