@@ -28,6 +28,9 @@ STATICFILES_FINDERS = [
 
 STATICFILES_DIRS = [os.environ.get('STATICFILES_DIRS', os.path.join(BASE_DIR, 'static'))]
 
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/login/'
+
 try:
     HOSTNAME = socket.gethostname()
 except:

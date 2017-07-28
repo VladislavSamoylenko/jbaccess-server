@@ -1,0 +1,19 @@
+{% extends 'layout/base.html' %}
+
+{% block content %}
+
+    <h1>Authentication</h1>
+
+    <div class="row">
+        <form class="card col s12 m8" method="post">
+            <div class="card-content">
+                {% csrf_token %}
+                {{ form }}
+            </div>
+            <div class="card-action right-align">
+                <button class="btn waves-effect waves-light" type="submit">LogIn</button>
+            </div>
+        </form>
+    </div>
+
+{% endblock %}
