@@ -28,3 +28,14 @@ class PersonsController(BaseView):
             PersonService.create(name)
 
         return redirect(reverse('personnel'))
+
+
+class PlacesController(BaseView):
+    def get(self, request):
+        return render(request, 'page/places.html')
+
+
+class PersonController(BaseView):
+    def get(self, request, person_id):
+        person = PersonService.get(person_id)
+        return render(request, 'page/person.html', {'person': person})

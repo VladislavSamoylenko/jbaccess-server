@@ -1,0 +1,23 @@
+{% extends 'layout/base.html' %}
+
+{% block content %}
+    <div class="row">
+        <h1>{{ person.name }}</h1>
+        <div class="card col m4">
+            <div class="card-content">
+                <table class="bordered">
+                    <tbody>
+                        <tr>
+                            <td><em>ID</em></td>
+                            <td><b>{{ person.id }}</b></td>
+                        </tr>
+                        <tr>
+                            <td><em>NAME</em></td>
+                            <td><b>{{ person.name }}</b></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}
