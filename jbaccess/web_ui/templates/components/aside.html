@@ -3,7 +3,7 @@
 <ul class="side-nav fixed">
     <li class="blue-fill"></li>
     <li class="logo">
-        <a href="/">
+        <a href="{% url 'index' %}">
             <img src="{% static "image/logo-white.png" %}" alt="jointbox">
         </a>
     </li>
@@ -32,7 +32,7 @@
             <i class="material-icons">developer_board</i>Controllers
         </a>
     </li>
-    {% if request.path != "/login/" %}
+    {% if user.is_authenticated %}
         <li>
             <a href="{% url "logout" %}" class="waves-effect waves-light white-text">
                 <i class="material-icons">exit_to_app</i>Log Out

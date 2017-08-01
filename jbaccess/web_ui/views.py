@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, reverse
 
 from jba_core.service import PersonService
 from .commons import BaseView
@@ -22,14 +22,9 @@ class PersonsController(BaseView):
 
     def post(self, request):
         form = PersonForm(request.POST)
-        personnel = PersonService.get_all()
 
         if form.is_valid():
             name = form.cleaned_data['name']
             PersonService.create(name)
-            form = PersonForm()
 
-        return render(request, 'page/personnel.html', {
-            'persons': personnel,
-            'form': form
-        })
+        return redirect(reverse('personnel'))

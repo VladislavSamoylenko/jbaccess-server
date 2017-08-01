@@ -2,6 +2,7 @@
 
 @blue: #2B7FBB;
 @blue-hover: #3292d6;
+@accent: #ff6d00;
 
 main{
   padding-left: 300px;
@@ -43,7 +44,20 @@ img{
 }
 .card-title > * {
   margin-bottom: 2rem !important;
-
+}
+ul.persons{
+  .delete-person{
+    opacity: 0;
+    cursor: pointer;
+    &:hover{
+      color: @accent;
+    }
+  }
+  li:hover{
+    .delete-person{
+      opacity: 1;
+    }
+  }
 }
 
 @media (max-width: 992px) {

@@ -35,6 +35,16 @@ img {
 .card-title > * {
   margin-bottom: 2rem !important;
 }
+ul.persons .delete-person {
+  opacity: 0;
+  cursor: pointer;
+}
+ul.persons .delete-person:hover {
+  color: #ff6d00;
+}
+ul.persons li:hover .delete-person {
+  opacity: 1;
+}
 @media (max-width: 992px) {
   main {
     padding-left: 0;
