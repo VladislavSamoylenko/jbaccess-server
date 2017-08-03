@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from django.shortcuts import render, redirect, reverse
 
 from jba_core.service import PersonService
@@ -39,3 +40,7 @@ class PersonController(BaseView):
     def get(self, request, person_id):
         person = PersonService.get(person_id)
         return render(request, 'page/person.html', {'person': person})
+
+    def delete(self, request, person_id):
+        PersonService.delete(person_id)
+        return HttpResponse('success')

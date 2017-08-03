@@ -1,5 +1,6 @@
 <li class="collection-item">
     <a href="{% url 'person' person.id %}">
-      <span class="badge delete-person" data-id="{{ person.id }}"><i class="material-icons">clear</i></span>{{ person.name }}
+      {{ person.name }}
     </a>
+    <span class="badge delete-person" data-id="{{ person.id }}"><i class="material-icons">clear</i></span>
 </li>

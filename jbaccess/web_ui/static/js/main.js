@@ -7,7 +7,7 @@ $(document).ready( () => {
         let id = $(event.currentTarget).attr('data-id');
 
         $.ajax({
-            url: `/api/person/${id}`,
+            url: `/person/${id}`,
             type: 'DELETE',
             success: result => {
                window.location.replace(window.location.href)
