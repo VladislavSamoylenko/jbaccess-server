@@ -1,9 +1,11 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, reverse
+from django.views.generic import FormView
 
+from jba_core.service import KeyService
 from jba_core.service import PersonService
 from .commons import BaseView
-from .forms import PersonForm
+from .forms import PersonForm, KeyForm
 
 
 class IndexController(BaseView):
@@ -39,8 +41,23 @@ class PlacesController(BaseView):
 class PersonController(BaseView):
     def get(self, request, person_id):
         person = PersonService.get(person_id)
-        return render(request, 'page/person.html', {'person': person})
+        keys = PersonService.get_keys(person_id)
+        form = KeyForm()
+        form.fields.get('person_id').initial = person_id
+        return render(request, 'page/person.html', {'person': person, 'keys': keys, 'form': form})
 
     def delete(self, request, person_id):
         PersonService.delete(person_id)
         return HttpResponse('success')
+
+
+class KeyController(FormView):
+    form_class = KeyForm
+
+    def form_valid(self, form):
+        person_id = form.cleaned_data['person_id']
+        name = form.cleaned_data['name']
+        access_key = 'asdfasdfasdf'
+        KeyService.create(name, access_key, person_id)
+        return redirect('person', person_id)
+
