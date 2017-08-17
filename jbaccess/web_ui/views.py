@@ -57,7 +57,7 @@ class KeyController(FormView):
     def form_valid(self, form):
         person_id = form.cleaned_data['person_id']
         name = form.cleaned_data['name']
-        access_key = 'asdfasdfasdf'
+        access_key = form.cleaned_data['access_key']
         KeyService.create(name, access_key, person_id)
         return redirect('person', person_id)
 

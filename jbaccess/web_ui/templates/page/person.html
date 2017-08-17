@@ -1,33 +1,40 @@
 {% extends 'layout/base.html' %}
-
+{% load jba_tags %}
 {% block content %}
     <div class="row">
         <h1>{{ person.name }}</h1>
-        <div class="card col m4 s12">
-            <div class="card-content">
-                <table class="bordered">
-                    <tbody>
-                        <tr>
-                            <td><em>ID</em></td>
-                            <td><b>{{ person.id }}</b></td>
-                        </tr>
-                        <tr>
-                            <td><em>NAME</em></td>
-                            <td><b>{{ person.name }}</b></td>
-                        </tr>
-                    </tbody>
-                </table>
+        <div class="col m5 s12">
+            <div class="card">
+                <div class="card-content">
+                    <table class="bordered">
+                        <tbody>
+                            <tr>
+                                <td><em>ID</em></td>
+                                <td><b>{{ person.id }}</b></td>
+                            </tr>
+                            <tr>
+                                <td><em>NAME</em></td>
+                                <td><b>{{ person.name }}</b></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
+            <ul class="collection with-header">
+                <li class="collection-header"><h5>Keys</h5></li>
+                {% if keys %}
+                    {% for key in keys %}
+                        <li class="collection-item">id: {{ key.id }}<br>name: {{ key.name }}</li>
+                    {% endfor %}
+                {% else %}
+                    <li class="collection-item">There are no keys yet</li>
+                {% endif %}
+            </ul>
         </div>
-        <form class="card col m7 s12 offset-m1" action="{% url 'add_key' %}" method="POST">
+        <form class="card col m6 s12 offset-m1" action="{% url 'add_key' %}" method="POST">
             <div class="card-content">
-                <h5>Keys</h5>
-                {% for key in keys %}
-                    <p>{{ key.id }}: {{ key.name }}</p>
-                {% endfor %}
-                <h5>Add key</h5>
-                {% csrf_token %}
-                {{ form }}
+                <h5>Create key</h5>
+                {% form_body form %}
             </div>
             <div class="card-action right-align">
                 <a href="#" class="clear">clear</a>
