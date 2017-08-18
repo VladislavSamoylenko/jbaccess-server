@@ -35,21 +35,28 @@ img {
 .card-title > * {
   margin-bottom: 2rem !important;
 }
-ul.persons .delete-person {
+ul .delete-person,
+ul .delete-key {
   opacity: 0;
   cursor: pointer;
 }
-ul.persons .delete-person:hover {
+ul .delete-person:hover,
+ul .delete-key:hover {
   color: #ff6d00;
 }
-ul.persons li:hover .delete-person {
+ul li:hover .delete-person,
+ul li:hover .delete-key {
   opacity: 1;
 }
-ul.persons .badge .key {
+ul .badge .key {
   padding-right: 7px;
   font-size: 16px;
   margin-top: 3px;
   display: inline-block;
+}
+.delete-key {
+  position: relative;
+  top: -12px;
 }
 @media (max-width: 992px) {
   main {

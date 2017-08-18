@@ -14,5 +14,17 @@ $(document).ready( () => {
                window.location.replace(window.location.href)
             }
         });
+    });
+
+    $('.delete-key').click( (event) => {
+        let id = $(event.currentTarget).attr('data-id');
+
+        $.ajax({
+            url: `/keys/${id}`,
+            type: 'DELETE',
+            success: result => {
+               window.location.replace(window.location.href)
+            }
+        });
     })
 });

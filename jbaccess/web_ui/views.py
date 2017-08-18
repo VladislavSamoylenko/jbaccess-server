@@ -54,7 +54,7 @@ class PersonController(BaseView):
         return HttpResponse('success')
 
 
-class KeyController(FormView):
+class AddKeyController(FormView):
     form_class = KeyForm
 
     def form_valid(self, form):
@@ -64,3 +64,8 @@ class KeyController(FormView):
         KeyService.create(name, access_key, person_id)
         return redirect('person', person_id)
 
+
+class KeyController(BaseView):
+    def delete(self, request, key_id):
+        KeyService.delete(key_id)
+        return HttpResponse('success')
