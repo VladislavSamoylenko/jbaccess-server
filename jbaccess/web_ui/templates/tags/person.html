@@ -2,5 +2,8 @@
     <a href="{% url 'person' person.id %}">
       {{ person.name }}
     </a>
-    <span class="badge delete-person" data-id="{{ person.id }}"><i class="material-icons">clear</i></span>
+    <span class="badge"><i class="material-icons key">vpn_key</i>{{ person.keys }}</span>
+    <span class="badge delete-person" data-id="{{ person.id }}">
+        <i class="material-icons">clear</i>
+    </span>
 </li>

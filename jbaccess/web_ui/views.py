@@ -18,6 +18,9 @@ class PersonsController(BaseView):
         form = PersonForm()
         personnel = PersonService.get_all()
 
+        for person in personnel:
+            person.keys = len(PersonService.get_keys(person.id))
+
         return render(request, 'page/personnel.html', {
             'persons': personnel,
             'form': form
