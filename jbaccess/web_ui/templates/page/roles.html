@@ -1,0 +1,33 @@
+{% extends 'layout/base.html' %}
+{% load jba_tags %}
+{% block content %}
+    <div class="row">
+        <h1>Roles</h1>
+        <div class="col m6 s12">
+            <ul class="collection with-header">
+                <li class="collection-header"><h5>All roles</h5></li>
+                {% if roles %}
+                    {% for role in roles %}
+                        <li class="collection-item">id: {{ role.id }}<br>name: {{ role.name }}
+                            <span class="badge delete-role delete" data-id="{{ role.id }}">
+                            <i class="material-icons">clear</i>
+                        </span>
+                        </li>
+                    {% endfor %}
+                {% else %}
+                    <li class="collection-item">There are no roles yet</li>
+                {% endif %}
+            </ul>
+        </div>
+        <form class="card col m5 s12 offset-m1" action="{% url 'add_role' %}" method="POST"><div class="card-content">
+            <h5>Create Role</h5>
+            {% form_body form %}
+            </div><div class="card-action right-align">
+                <a href="#" class="clear">clear</a>
+                <button class="btn waves-effect waves-light" type="submit">Add Role
+                    <i class="material-icons right">add_circle</i>
+                </button>
+            </div>
+        </form>
+    </div>
+{% endblock %}

@@ -35,17 +35,14 @@ img {
 .card-title > * {
   margin-bottom: 2rem !important;
 }
-ul .delete-person,
-ul .delete-key {
+ul .delete {
   opacity: 0;
   cursor: pointer;
 }
-ul .delete-person:hover,
-ul .delete-key:hover {
+ul .delete:hover {
   color: #ff6d00;
 }
-ul li:hover .delete-person,
-ul li:hover .delete-key {
+ul li:hover .delete {
   opacity: 1;
 }
 ul .badge .key {
@@ -54,7 +51,7 @@ ul .badge .key {
   margin-top: 3px;
   display: inline-block;
 }
-.delete-key {
+.delete {
   position: relative;
   top: -12px;
 }

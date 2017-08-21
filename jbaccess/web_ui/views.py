@@ -2,10 +2,9 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect, reverse
 from django.views.generic import FormView
 
-from jba_core.service import KeyService
-from jba_core.service import PersonService
+from jba_core.service import KeyService, PersonService, RoleService
 from .commons import BaseView
-from .forms import PersonForm, KeyForm
+from .forms import PersonForm, KeyForm, RoleForm
 
 
 class IndexController(BaseView):
@@ -69,3 +68,20 @@ class KeyController(BaseView):
     def delete(self, request, key_id):
         KeyService.delete(key_id)
         return HttpResponse('success')
+
+
+class RoleController(BaseView):
+    def get(self, request):
+        form = RoleForm()
+        roles = RoleService.get_all()
+        return render(request, 'page/roles.html', {'roles': roles, 'form': form})
+
+
+class AddRoleController(FormView):
+    form_class = RoleForm
+
+    def form_valid(self, form):
+        name = form.cleaned_data['name']
+        RoleService.create(name)
+        return redirect('roles')
+
