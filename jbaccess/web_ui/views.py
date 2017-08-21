@@ -70,11 +70,17 @@ class KeyController(BaseView):
         return HttpResponse('success')
 
 
-class RoleController(BaseView):
+class RolesController(BaseView):
     def get(self, request):
         form = RoleForm()
         roles = RoleService.get_all()
         return render(request, 'page/roles.html', {'roles': roles, 'form': form})
+
+
+class RoleController(BaseView):
+    def delete(self, request, role_id):
+        RoleService.delete(role_id)
+        return HttpResponse('success')
 
 
 class AddRoleController(FormView):
