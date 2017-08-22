@@ -11,12 +11,18 @@ $(document).ready( () => {
     });
 
     removal.forEach(element => deleteItem(element));
+
+    $('select').material_select();
+
+    $('select[name=role]').change(event => {
+        $(event.currentTarget).parents('form').submit()
+    })
 });
 
 function deleteItem(item) {
     let $element = $('.delete-' + item.name);
     if ($element)
-        $element.click((event) => {
+        $element.click(event => {
             let id = $(event.currentTarget).attr('data-id');
 
             $.ajax({

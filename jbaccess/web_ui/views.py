@@ -4,7 +4,9 @@ from django.views.generic import FormView
 
 from jba_core.service import KeyService, PersonService, RoleService
 from .commons import BaseView
-from .forms import PersonForm, KeyForm, RoleForm
+from .forms import PersonForm, KeyForm, RoleForm, AttachRoleForm
+
+# TODO refactor: separate to different files
 
 
 class IndexController(BaseView):
@@ -44,9 +46,24 @@ class PersonController(BaseView):
     def get(self, request, person_id):
         person = PersonService.get(person_id)
         keys = PersonService.get_keys(person_id)
-        form = KeyForm()
-        form.fields.get('person_id').initial = person_id
-        return render(request, 'page/person.html', {'person': person, 'keys': keys, 'form': form})
+
+        key_form = KeyForm()
+        key_form.fields.get('person_id').initial = person_id
+
+        roles = PersonService.get_roles(person_id)
+        role_form = AttachRoleForm()
+        role_form.fields.get('person_id').initial = person_id
+        if len(roles):
+            role_form.fields.get('role').initial = PersonService.get_roles(person_id)[0]
+        else:
+            role_form.fields.get('role').initial = 7  # 7 is "empty", no roles attached
+
+        return render(request, 'page/person.html',
+                      {'person': person,
+                       'keys': keys,
+                       'form': key_form,
+                       'role_form': role_form
+                       })
 
     def delete(self, request, person_id):
         PersonService.delete(person_id)
@@ -91,3 +108,12 @@ class AddRoleController(FormView):
         RoleService.create(name)
         return redirect('roles')
 
+
+class AttachRoleToPerson(FormView):
+    form_class = AttachRoleForm
+
+    def form_valid(self, form):
+        person_id = form.cleaned_data['person_id']
+        role_id = form.cleaned_data['role']
+        PersonService.attach_role(person_id, role_id)
+        return redirect('person', person_id)

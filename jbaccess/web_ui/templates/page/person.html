@@ -18,6 +18,10 @@
                             </tr>
                         </tbody>
                     </table>
+                    <br>
+                    <form action="{% url 'attach_role' %}" method="POST">
+                        {{ role_form }}
+                    </form>
                 </div>
             </div>
             <ul class="collection with-header">
@@ -47,6 +51,10 @@
                 </button>
             </div>
         </form>
+        <div class="col m12">
+
+        </div>
+
 
     </div>
 {% endblock %}
