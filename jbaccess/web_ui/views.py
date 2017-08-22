@@ -54,7 +54,7 @@ class PersonController(BaseView):
         role_form = AttachRoleForm()
         role_form.fields.get('person_id').initial = person_id
         if len(roles):
-            role_form.fields.get('role').initial = PersonService.get_roles(person_id)[0]
+            role_form.fields.get('role').initial = PersonService.get_roles(person_id)[0].id
         else:
             role_form.fields.get('role').initial = 7  # 7 is "empty", no roles attached
 
