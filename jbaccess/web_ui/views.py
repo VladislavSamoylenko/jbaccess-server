@@ -1,12 +1,8 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, reverse
-from django.views.generic import FormView
-
-from jba_core.service import KeyService, PersonService, RoleService
+from jba_core.service import PersonService
 from .commons import BaseView
-from .forms import PersonForm, KeyForm, RoleForm, AttachRoleForm
-
-# TODO refactor: separate to different files
+from .forms import PersonForm, KeyForm, AttachRoleForm
 
 
 class IndexController(BaseView):
@@ -68,52 +64,3 @@ class PersonController(BaseView):
     def delete(self, request, person_id):
         PersonService.delete(person_id)
         return HttpResponse('success')
-
-
-class AddKeyController(FormView):
-    form_class = KeyForm
-
-    def form_valid(self, form):
-        person_id = form.cleaned_data['person_id']
-        name = form.cleaned_data['name']
-        access_key = form.cleaned_data['access_key']
-        KeyService.create(name, access_key, person_id)
-        return redirect('person', person_id)
-
-
-class KeyController(BaseView):
-    def delete(self, request, key_id):
-        KeyService.delete(key_id)
-        return HttpResponse('success')
-
-
-class RolesController(BaseView):
-    def get(self, request):
-        form = RoleForm()
-        roles = RoleService.get_all()
-        return render(request, 'page/roles.html', {'roles': roles, 'form': form})
-
-
-class RoleController(BaseView):
-    def delete(self, request, role_id):
-        RoleService.delete(role_id)
-        return HttpResponse('success')
-
-
-class AddRoleController(FormView):
-    form_class = RoleForm
-
-    def form_valid(self, form):
-        name = form.cleaned_data['name']
-        RoleService.create(name)
-        return redirect('roles')
-
-
-class AttachRoleToPerson(FormView):
-    form_class = AttachRoleForm
-
-    def form_valid(self, form):
-        person_id = form.cleaned_data['person_id']
-        role_id = form.cleaned_data['role']
-        PersonService.attach_role(person_id, role_id)
-        return redirect('person', person_id)
